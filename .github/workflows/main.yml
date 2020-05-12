@@ -26,7 +26,7 @@ jobs:
           id: get-mybranch
         - name: print-branch 
           run: |
-           echo "${{ steps.get-mybranch.output.branch}}"
+           echo "${{ steps.get-mybranch.outputs.branch }}" - "${{ steps.gt-mybranch.outputs.tag }}"
         - name: other-stuff
           run: |  
            def process_pull_request(pull_request)
