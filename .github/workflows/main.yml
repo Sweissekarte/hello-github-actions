@@ -26,7 +26,9 @@ jobs:
           id: get-mybranch
         - name: print-branch 
           run: |
-           echo "${{ steps.getmybranch.output.branch}}"
+           echo "${{ steps.get-mybranch.output.branch}}"
+        - name: other-stuff
+          run: |  
            def process_pull_request(pull_request)
            @client.create_status(pull_request['base']['repo']['full_name'], pull_request['head']['sha'], 'pending')
            sleep 2 # do busy work...
