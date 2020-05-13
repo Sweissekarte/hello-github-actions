@@ -17,6 +17,7 @@ jobs:
         echo test, and deploy your project.
         echo $GITHUB_SHA
         echo ${{ github.event.pull_request.head.sha }}
+        echo ${{ github.event.pull_request.head }}
       
   test: 
      
