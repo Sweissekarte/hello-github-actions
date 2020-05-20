@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [pull_request, pull_request_review]
 
 jobs:
   build:
@@ -8,11 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        echo I wnat to add yet another line to this file
+        echo $GITHUB_SHA
+        echo ${{ github.event.pull_request.head.sha }}
+        echo ${{ github.event.pull_request.head }}
+      
+  test: 
+     
+    runs-on: ubuntu-latest
+    steps: 
+        - name: CI2
+          uses: ypicard/get-branch-name-github-action@v1
+          id: get-mybranch
+        - name: print-branch 
+          run: echo "${{ steps.get-mybranch.outputs.branch }}" - "${{ steps.gt-mybranch.outputs.tag }}"
+          
+  new-item:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: jackjamieson2/GitHub-issues-to-pdf@v1
+      - name: other-stuff
+        run: python GitHub-issues-to-pdf.py
+                 
